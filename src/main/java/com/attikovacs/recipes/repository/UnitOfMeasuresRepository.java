@@ -8,6 +8,6 @@ import com.attikovacs.recipes.model.UnitOfMeasure;
 
 public interface UnitOfMeasuresRepository extends CrudRepository<UnitOfMeasure, Long> {
 	
-	public Optional<UnitOfMeasure> findByDescription(String description);
+	Optional<UnitOfMeasure> findByDescription(String description);
 
 }

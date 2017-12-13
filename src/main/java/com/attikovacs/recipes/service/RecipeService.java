@@ -6,6 +6,6 @@ import com.attikovacs.recipes.model.Recipe;
 
 public interface RecipeService {
 
-	public Set<Recipe> getRecipes();
+	Set<Recipe> getRecipes();
 
 }

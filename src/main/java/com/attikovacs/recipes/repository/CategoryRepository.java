@@ -8,6 +8,6 @@ import com.attikovacs.recipes.model.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
-	public Optional<Category> findByDescription(String description);
+	Optional<Category> findByDescription(String description);
 
 }

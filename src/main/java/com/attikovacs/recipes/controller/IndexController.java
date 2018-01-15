@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.attikovacs.recipes.service.RecipeService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -19,6 +22,7 @@ public class IndexController {
 
 	@RequestMapping(value = { "", "/" })
 	public String getIndex(Model model) {
+		log.debug("index.html");
 		model.addAttribute("recipes", recipeService.getRecipes());
 		return "index";
 	}

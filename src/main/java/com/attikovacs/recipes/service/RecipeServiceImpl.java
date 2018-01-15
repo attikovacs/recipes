@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.attikovacs.recipes.model.Recipe;
 import com.attikovacs.recipes.repository.RecipeRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
@@ -23,6 +26,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public Set<Recipe> getRecipes() {
 		Set<Recipe> set = new HashSet<>();
 		recipeRepository.findAll().iterator().forEachRemaining(set::add);
+		log.debug("Getting recipes from database");
 		return set;
 	}
 	

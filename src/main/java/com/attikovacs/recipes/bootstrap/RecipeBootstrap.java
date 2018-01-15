@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.attikovacs.recipes.enums.Difficulty;
 import com.attikovacs.recipes.model.Category;
@@ -19,6 +20,9 @@ import com.attikovacs.recipes.repository.CategoryRepository;
 import com.attikovacs.recipes.repository.RecipeRepository;
 import com.attikovacs.recipes.repository.UnitOfMeasuresRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -34,8 +38,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 	}
 
 	@Override
+	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		recipeRepository.saveAll(initRecipes());
+		log.debug("Initial data were loaded into database");
 	}
 
 	private List<Recipe> initRecipes() {

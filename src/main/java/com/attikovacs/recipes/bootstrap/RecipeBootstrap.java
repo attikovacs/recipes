@@ -53,27 +53,18 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 			throw new RuntimeException("Tablespoon does not exist");
 		}
 		UnitOfMeasure uom1 = uom1Opt.get();
-		Ingredient ing1 = new Ingredient();
-		ing1.setAmount(new BigDecimal(2));
-		ing1.setDescription("salt");
-		ing1.setUnitOfMeasure(uom1);
-		ing1.setRecipe(guac);
-		guac.getIngredients().add(ing1);
+		Ingredient ing1 = new Ingredient("salt", new BigDecimal(2), uom1);
+		guac.addIngredient(ing1);
 		Optional<UnitOfMeasure> uom2Opt = unitOfMeasuresRepository.findByDescription("Teaspoon");
 		if (!uom2Opt.isPresent()) {
 			throw new RuntimeException("Teaspoon does not exist");
 		}
 		UnitOfMeasure uom2 = uom2Opt.get();
-		Ingredient ing2 = new Ingredient();
-		ing2.setAmount(new BigDecimal(1));
-		ing2.setDescription("pepper");
-		ing2.setUnitOfMeasure(uom2);
-		ing2.setRecipe(guac);
-		guac.getIngredients().add(ing2);
+		Ingredient ing2 = new Ingredient("pepper", new BigDecimal(1), uom2);
+		guac.addIngredient(ing2);
 
 		Notes notes = new Notes();
 		notes.setNotes("This is a good guacamole");
-		notes.setRecipe(guac);
 		guac.setNotes(notes);
 
 		Category cat1 = categoryRepository.findByDescription("Soup").get();
@@ -95,23 +86,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		taco.setDirections("1. prepare the tacos");
 
 		uom1 = unitOfMeasuresRepository.findByDescription("Cup").get();
-		ing1 = new Ingredient();
-		ing1.setAmount(new BigDecimal(2));
-		ing1.setDescription("water");
-		ing1.setUnitOfMeasure(uom1);
-		ing1.setRecipe(taco);
-		taco.getIngredients().add(ing1);
+		ing1 = new Ingredient("water", new BigDecimal(2), uom1);
+		taco.addIngredient(ing1);
 		uom2 = unitOfMeasuresRepository.findByDescription("Glass").get();
-		ing2 = new Ingredient();
-		ing2.setAmount(new BigDecimal(1));
-		ing2.setDescription("milk");
-		ing2.setUnitOfMeasure(uom2);
-		ing2.setRecipe(taco);
-		taco.getIngredients().add(ing2);
+		ing2 = new Ingredient("milk", new BigDecimal(1), uom2);
+		taco.addIngredient(ing2);
 
 		notes = new Notes();
 		notes.setNotes("This is a good taco");
-		notes.setRecipe(taco);
 		taco.setNotes(notes);
 
 		cat1 = categoryRepository.findByDescription("Meat").get();

@@ -1,4 +1,4 @@
-package com.attikovacs.recipes.domain;
+package com.attikovacs.recipes.model;
 
 import static org.junit.Assert.*;
 

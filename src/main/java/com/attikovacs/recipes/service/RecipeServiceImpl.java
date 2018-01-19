@@ -1,6 +1,7 @@
 package com.attikovacs.recipes.service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,13 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public Recipe findById(Long id) {
-		return null;
+		Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+		
+		if (!recipeOptional.isPresent()) {
+			throw new RuntimeException("id is not present");
+		}
+		
+		return recipeOptional.get();
 	}
 	
 }

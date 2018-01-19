@@ -29,5 +29,10 @@ public class RecipeServiceImpl implements RecipeService {
 		log.debug("Getting recipes from database");
 		return set;
 	}
+
+	@Override
+	public Recipe findById(Long id) {
+		return null;
+	}
 	
 }

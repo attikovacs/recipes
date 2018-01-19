@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.Before;
@@ -39,6 +40,22 @@ public class RecipeServiceImplTest {
 		Set<Recipe> recipes = recipeServiceImpl.getRecipes();
 		assertEquals(1, recipes.size());
 		verify(recipeRepository, times(1)).findAll();
+	}
+	
+	@Test
+	public void testFindById() {
+		Recipe recipe = new Recipe();
+		Long id = 4L;
+		recipe.setId(id);
+		Optional<Recipe> opt = Optional.of(recipe);
+		
+		when(recipeRepository.findById(anyLong())).thenReturn(opt);
+		
+		Recipe ret = recipeServiceImpl.findById(id);
+		
+		assertEquals(id, ret.getId());
+		verify(recipeRepository, times(1)).findById(anyLong());
+		verify(recipeRepository, never()).findAll();
 	}
 
 }
